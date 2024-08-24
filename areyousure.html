@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Are You Sure?</title>
+    <style>
+        body {
+            background-color: #f0f8ff;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: #ffa500;
+            margin-top: 100px;
+            font-size: 3em;
+        }
+        button {
+            font-size: 1.5em;
+            margin: 20px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .yes-button {
+            background-color: #ff4500;
+            color: white;
+        }
+        .no-button {
+            background-color: #32cd32;
+            color: white;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Pakka nhi chiyeh?</h1>
+    <button class="yes-button" onclick="location.href='thanks.html'">Han, nhi chiyeh gift</button>
+    <button class="no-button" id="noButton" onclick="moveButton()">Nhi, chiyeh gift</button>
+
+    <script>
+        function moveButton() {
+            var noButton = document.getElementById("noButton");
+
+            // Get current position of the button
+            var rect = noButton.getBoundingClientRect();
+            var currentX = rect.left;
+            var currentY = rect.top;
+
+            // Calculate new position within 100px radius
+            var x = currentX + (Math.random() * 200 - 100);
+            var y = currentY + (Math.random() * 200 - 100);
+
+            // Ensure the button stays within the viewport
+            if (x > window.innerWidth - noButton.clientWidth) {
+                x = window.innerWidth - noButton.clientWidth;
+            }
+            if (x < 0) {
+                x = 0;
+            }
+            if (y > window.innerHeight - noButton.clientHeight) {
+                y = window.innerHeight - noButton.clientHeight;
+            }
+            if (y < 0) {
+                y = 0;
+            }
+
+            noButton.style.position = "absolute";
+            noButton.style.left = x + 'px';
+            noButton.style.top = y + 'px';
+        }
+    </script>
+
+</body>
+</html>
